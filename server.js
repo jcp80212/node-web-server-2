@@ -2,7 +2,7 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
-const port = process.env.PORT  || 3000;
+const port = process.env.PORT  || 3001;
 var app = express();
 
 hbs.registerPartials(__dirname+'/views/partials');
@@ -32,6 +32,12 @@ hbs.registerHelper('getCurrentYear', () => {
 hbs.registerHelper('screamIt', (text) =>{
   return text.toUpperCase();
 })
+
+app.get('/projects', (req, res) => {
+  res.render('projects.hbs', {
+    pageTitle: 'Projects'
+  });
+});
 
 app.get('/', (req, res) => {
   //res.send('<h1>Hello Express!</h1>');
